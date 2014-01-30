@@ -72,6 +72,19 @@ var keywords = glossary.extract("The pears from the farm are good");
 console.log(keywords); // [ { word: 'pears', count: 1 }, { word: 'farm', count: 1 } ]
 ```
 
+
+#### minSize output
+
+Use `minSize` to limit the terms to a minimum size
+
+```javascript
+var glossary = require("./glossary")({ minSize: 5 });
+
+var keywords = glossary.extract("I like to eat pears in the garden");
+
+console.log(keywords); // [ 'garden' ]
+```
+
 # propers
 
 `glossary` Uses [jspos](http://code.google.com/p/jspos/) for POS tagging. It's inspired by the python module [topia.termextract](http://pypi.python.org/pypi/topia.termextract/).
