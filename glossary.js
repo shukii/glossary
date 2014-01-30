@@ -13,7 +13,8 @@ function Glossary(opts) {
         collapse: false,
         blacklist: [],
         verbose: false,
-        minSize: 3
+        minSize: 3,
+        allLower: true
     });
 }
 
@@ -22,7 +23,13 @@ Glossary.prototype.extract = function(text) {
         terms = {},
         multiterm = [];
 
+    var opts = this.opts;
+
     function add(word) {
+        if (opts.allLower) {
+            word = word.toLowerCase();
+        }
+
         var norm = normalize(word);
         multiterm.push(word);
 
@@ -60,7 +67,6 @@ Glossary.prototype.extract = function(text) {
         }
     }
 
-    var opts = this.opts;
     var terms =  _(terms).select(function(term) {
         return term.count >= opts.minFreq;
     });
